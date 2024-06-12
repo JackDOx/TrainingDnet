@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Training.Entity", "Training
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Training.Data", "Training.Data\Training.Data.csproj", "{17C4AAC2-200E-40E3-856C-2D52163B3322}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Domain", "Training.Domain\Training.Domain.csproj", "{99769C4A-AB28-440B-8994-6EAA794A6078}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Training.Domain", "Training.Domain\Training.Domain.csproj", "{99769C4A-AB28-440B-8994-6EAA794A6078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Authentication", "Training.Authentication\Training.Authentication.csproj", "{39CAC9D5-D15E-4AC2-927D-2A80335585C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{99769C4A-AB28-440B-8994-6EAA794A6078}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99769C4A-AB28-440B-8994-6EAA794A6078}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99769C4A-AB28-440B-8994-6EAA794A6078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39CAC9D5-D15E-4AC2-927D-2A80335585C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39CAC9D5-D15E-4AC2-927D-2A80335585C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39CAC9D5-D15E-4AC2-927D-2A80335585C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39CAC9D5-D15E-4AC2-927D-2A80335585C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

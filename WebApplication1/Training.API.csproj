@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Training.Authentication\Training.Authentication.csproj" />
     <ProjectReference Include="..\Training.Data\Training.Data.csproj" />
     <ProjectReference Include="..\Training.Domain\Training.Domain.csproj" />
     <ProjectReference Include="..\Training.Entity\Training.Entity.csproj" />

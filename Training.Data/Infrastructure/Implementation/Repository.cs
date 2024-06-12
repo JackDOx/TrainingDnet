@@ -15,14 +15,14 @@ namespace Training.Data.Infrastructure.Implementation
         #region Private Fields
         private readonly DbSet<T> _dbSet;
         private readonly DbContext _dbContext;
-        //private readonly IHttpContextAccessor _context;
+        private readonly IHttpContextAccessor _context;
         #endregion
         #region Constructors
-        public Repository(DbContext dbContext)
+        public Repository(DbContext dbContext, IHttpContextAccessor context)
         {
             _dbContext = dbContext;
             _dbSet = dbContext.Set<T>();
-            //_context = context;
+            _context = context;
         }
         #endregion
         #region Methods
@@ -31,12 +31,12 @@ namespace Training.Data.Infrastructure.Implementation
         {
             get
             {
-               // ClaimsIdentity? identity = _context.HttpContext.User.Identity as ClaimsIdentity;
-                //var userClaim = identity?.Claims.SingleOrDefault(x => x.Type.Equals("Id"));
-               // if (userClaim != null)
-                //{
-                //    return Guid.Parse(userClaim.Value);
-                //}
+               ClaimsIdentity? identity = _context.HttpContext.User.Identity as ClaimsIdentity;
+               var userClaim = identity?.Claims.SingleOrDefault(x => x.Type.Equals("Id"));
+               if (userClaim != null)
+                {
+                    return Guid.Parse(userClaim.Value);
+                }
 
                 return Guid.Empty;
             }

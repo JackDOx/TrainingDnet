@@ -19,8 +19,6 @@
 
   <ItemGroup>
     <Folder Include="AutoMapper\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>

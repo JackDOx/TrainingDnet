@@ -14,12 +14,16 @@ namespace Training.Data.Infrastructure.Interfaces
         IRepository<Role> Role { get; }
         IRepository<UserDetail> UserDetail { get; }
         IRepository<UserRole> UserRole { get; }
+        IRepository<Author> Author { get; }
+        IRepository<Category> Category { get; }
+        IRepository<Book> Book { get; }
+        IRepository<ProductRole> ProductRole { get; }
         #endregion
 
         #region Methods
         int Commit();
         Task<int> CommitAsync(CancellationToken cancellationToken = default(CancellationToken));
-        IDbContextTransaction BeginTransactionScope();
+        IDbContextTransaction BeginTransactionScope();  
         #endregion
     }
     

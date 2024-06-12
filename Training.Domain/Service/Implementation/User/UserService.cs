@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Training.Domain.Command.Users;
 using Training.Domain.Service.Interface.User;
+using Training.Domain.ViewModel;
+using Training.Domain.ViewModel.Users;
 
 namespace Training.Domain.Service.Implementation.User
 {
@@ -16,6 +18,46 @@ namespace Training.Domain.Service.Implementation.User
         {
             return await _mediator.Send(request);
 
+        }
+
+        public async Task<bool> DeleteUser(DeleteUserCommand request)
+        {
+            return await _mediator.Send(request);
+        }
+
+        public async Task<bool> GetUser(GetUserCommand request)
+        {
+            return await _mediator.Send(request);
+        }
+
+        public async Task<PaginationSet<BookViewModel>> Listing(GetUserPaginationCommand request)
+        {
+            try
+            {
+                return await _mediator.Send(request);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.ToString());
+            }
+        }
+
+        public async Task<TokenViewModel> Login(LoginModelCommand request)
+        {
+            try
+            {
+                return await _mediator.Send(request);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.ToString());
+            }
+        }
+
+        public async Task<bool> UpdateUser(UpdateUserCommand request)
+        {
+            return await _mediator.Send(request);
         }
     }
 }

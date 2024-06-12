@@ -39,8 +39,15 @@ namespace Training.Domain.Handler.Users
                 National = request.National,
                 NationalId = request.NationalId,
             };
+            var userRole = new UserRole
+            {
+                RoleId = Guid.Parse("CF8214A8-A01D-4425-9B1B-B5EA6F66C314"),
+                UserId = id
+            };
+
 
             _unitOfWork.User.Insert(user);
+            _unitOfWork.UserRole.Insert(userRole);
             _unitOfWork.UserDetail.Insert(userDetail);
             return await _unitOfWork.CommitAsync() > 0;
             

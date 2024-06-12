@@ -18,12 +18,15 @@ namespace Training.Data.Infrastructure.Interfaces
         Task<T> GetById(object id, Ref<CheckError> checkError = null);
         Task<IEnumerable<T>> Get(string storedProcedureName, SqlParameter[] parameters , Ref<CheckError> checkError = null);
         Task<T> GetOne(string storedProcedureName, SqlParameter[] parameters = null, Ref<CheckError> checkError = null);
+        Task<T> GetOne(Expression<Func<T, bool>> predicate, Ref<CheckError> checkError = null);
         IEnumerable<SqlParameter> GetOutPut(string storedProcedureName, SqlParameter[] parameters, Ref<CheckError> checkError = null);
         IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
         Task<bool> Delete(object id, Ref<CheckError> checkError = null);
         Task<bool> Delete(T entity, Ref<CheckError> checkError = null);
         Task<bool> DeleteAll(IList<T> list, Ref<CheckError> checkError = null);
         IQueryable<T> GetQueryable();
+
+        IQueryable<T> GetQueryable(Expression<Func<T, bool>> condition);
 
     #endregion
     }

@@ -17,6 +17,10 @@ namespace Training.Data.Infrastructure.Implementation
         public virtual IRepository<Role> Role { get; }
         public virtual IRepository<UserDetail> UserDetail { get; }
         public virtual IRepository<UserRole> UserRole { get; }
+        public virtual IRepository<Author> Author { get; }
+        public virtual IRepository<Category> Category { get; }
+        public virtual IRepository<Book> Book { get; }
+        public virtual IRepository<ProductRole> ProductRole { get; }
 
         #endregion
 
@@ -26,7 +30,11 @@ namespace Training.Data.Infrastructure.Implementation
             IRepository<User> user,
             IRepository<Role> role,
             IRepository<UserDetail> userDetail,
-            IRepository<UserRole> userRole
+            IRepository<UserRole> userRole,
+            IRepository<Author> author,
+            IRepository<Category> category,
+            IRepository<Book> book,
+            IRepository<ProductRole> productRole
             )
 
         {
@@ -37,6 +45,10 @@ namespace Training.Data.Infrastructure.Implementation
             Role = role;
             UserDetail = userDetail;
             UserRole = userRole;
+            Author = author;
+            Category = category;
+            Book = book;
+            ProductRole = productRole;
         }
         #endregion
 
