@@ -7,8 +7,7 @@ namespace Training.Domain.Command.Books
 {
     public class CreateBookCommand : IRequest<BookViewModel>
     {
-        [Required]
-        public Guid Id { get; set; }
+
         [Required]
         public Guid AuthorId { get; set; }
 

@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using Training.Domain.ViewModel;
 using Training.Domain.ViewModel.Books;
+using Training.Domain.Command.Users;
+using System.Text.Json.Serialization;
 
 namespace Training.Domain.Command.Books
 {
@@ -12,12 +14,10 @@ namespace Training.Domain.Command.Books
         public SearchObjForCondition? Sort { get; set; }
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
+
+        [JsonIgnore]
+        public string? userRole { get; set; } = null;
     }
 
-    public class SearchObjForCondition
-    {
-        public string Field { get; set; }
-        public string Value { get; set; }
-    }
 }
 

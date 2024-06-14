@@ -8,6 +8,8 @@ namespace Training.Domain.Command.ProductRoles
         [Required]
         public Guid Id { get; set; }
 
-        public string? Name {  get; set; }
+        public Guid? BookId { get; set; }
+
+        public string? ListRole {  get; set; }
     }
 }

@@ -5,9 +5,9 @@ using Training.Entity.EntityModel;
 
 namespace Training.Domain.Handler.Authors
 {
-    public class CreateCategoryHandler : CategoryBaseHandler, IRequestHandler<CreateAuthorCommand, bool>
+    public class CreateAuthorHandler : AuthorBaseHandler, IRequestHandler<CreateAuthorCommand, bool>
     {
-        public CreateCategoryHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public CreateAuthorHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         public async Task<bool> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
         {

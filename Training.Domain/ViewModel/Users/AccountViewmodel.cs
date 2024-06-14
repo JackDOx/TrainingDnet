@@ -1,7 +1,7 @@
 ﻿
 namespace Training.Domain.ViewModel.Users
 {
-    public class BookViewModel
+    public class AccountViewModel
     {
         public Guid Id { get; set; }
         public string UserId { get; set; }

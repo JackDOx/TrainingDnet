@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Training.Domain.ViewModel.Users;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Training.Domain.Helper.Constants;
 
 namespace Training.API.Controllers
 {
@@ -55,9 +56,10 @@ namespace Training.API.Controllers
                 return Ok(false);
             }
 
-            
+
 
             var account = loginResult.UserProfile;
+
             var a = account.Roles.Select(role => role.Name).ToList();
             var b =  string.Join(", ", a);
             var claims = new List<Claim>();
@@ -109,6 +111,14 @@ namespace Training.API.Controllers
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteUser([FromBody] DeleteUserCommand model)
         {
+
+            #region roleAuthenticate
+            if (!RoleAuthenticate(_httpContext, UserConstants.adminRole))
+            {
+                return BadRequest(StatusCode(401, "Unauthorized!"));
+            };
+            #endregion
+
             #region Parameters validation
 
             // Parameter hasn't been initialized.
@@ -136,7 +146,15 @@ namespace Training.API.Controllers
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> GetUser([FromQuery] GetUserCommand model) {
+        public async Task<IActionResult> GetUser([FromQuery] GetUserCommand model) 
+        {
+            #region roleAuthenticate
+            if (!RoleAuthenticate(_httpContext, UserConstants.adminRole))
+            {
+                return BadRequest(StatusCode(401, "Unauthorized!"));
+            };
+            #endregion
+
             #region Parameters validation
             // Parameter hasn't been initialized.
             if (model == null)
@@ -167,6 +185,14 @@ namespace Training.API.Controllers
         [HttpPatch("Update")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand model)
         {
+
+            #region roleAuthenticate
+            if (!RoleAuthenticate(_httpContext, UserConstants.adminRole))
+            {
+                return BadRequest(StatusCode(401, "Unauthorized!"));
+            };
+            #endregion
+
             #region Parameters validation
             // Parameter hasn't been initialized.
             if (model == null)
@@ -204,12 +230,38 @@ namespace Training.API.Controllers
                 return BadRequest(StatusCode(500, "UnAuthorized User!"));
             }
             */
+
+            /*
             var role = GetCurrentUserRole(_httpContext);
             if (role.IsNullOrEmpty() || !role.Contains("Admin"))
             {
                 return BadRequest(StatusCode(500, "UnAuthorized User!"));
             }
+            */
 
+            #region roleAuthenticate
+            if (!RoleAuthenticate(_httpContext, UserConstants.bmRole))
+            {
+                return BadRequest(StatusCode(401, "Unauthorized!"));
+            };
+            #endregion
+
+
+            #region Parameters validation
+            // Parameter hasn't been initialized.
+            if (model == null)
+            {
+                model = new GetUserPaginationCommand();
+                TryValidateModel(model);
+            }
+
+            // Invalid modelState
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            #endregion
 
             var result = await _userService.Listing(model);
                 return Ok(result);

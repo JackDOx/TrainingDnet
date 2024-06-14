@@ -11,7 +11,7 @@ namespace Training.Domain.Service.Interface.User
         Task<bool> GetUser(GetUserCommand request);
         //Task<bool> GetMany(DeleteUserCommand request);
         Task<bool> UpdateUser(UpdateUserCommand request);
-        Task<PaginationSet<BookViewModel>> Listing(GetUserPaginationCommand request);
+        Task<PaginationSet<AccountViewModel>> Listing(GetUserPaginationCommand request);
         Task<TokenViewModel> Login(LoginModelCommand request);
     }
 }

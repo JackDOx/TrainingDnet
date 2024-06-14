@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Training.Data.Infrastructure.Interfaces;
 using Training.Domain.Command.Authors;
-using Training.Entity.EntityModel;
+
 
 namespace Training.Domain.Handler.Authors
 {
-    public class DeleteCategoryHandler : CategoryBaseHandler, IRequestHandler<DeleteAuthorCommand, bool>
+    public class DeleteAuthorHandler : AuthorBaseHandler, IRequestHandler<DeleteAuthorCommand, bool>
     {
-        public DeleteCategoryHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public DeleteAuthorHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         public async Task<bool> Handle(DeleteAuthorCommand request, CancellationToken cancellationToken)
         {

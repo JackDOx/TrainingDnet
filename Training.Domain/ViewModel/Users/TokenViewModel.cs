@@ -13,7 +13,7 @@ namespace Training.Domain.ViewModel.Users
         // Life time of the token
         public int LifeTime { get; set; }
 
-        public BookViewModel UserProfile { get; set; }
+        public AccountViewModel UserProfile { get; set; }
         #endregion
 
         #region Constructors
@@ -22,7 +22,7 @@ namespace Training.Domain.ViewModel.Users
 
         }
 
-        public TokenViewModel(string code, double expiration, int lifeTime, BookViewModel userProfileViewModel)
+        public TokenViewModel(string code, double expiration, int lifeTime, AccountViewModel userProfileViewModel)
         {
             Code = code;
             Expiration = expiration;

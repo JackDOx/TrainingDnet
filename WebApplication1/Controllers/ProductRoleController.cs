@@ -1,30 +1,31 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Training.Domain.Command.Roles;
-using Training.Domain.Service.Interface.Role;
+using System.Net.Http;
+using Training.Domain.Command.ProductRoles;
+using Training.Domain.Service.Interface.ProductRole;
 
 
 namespace Training.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoleController : BaseController
+    public class ProductRoleController : BaseController
     {
-        private readonly IRoleService _roleService;
-        public RoleController(IRoleService roleService)
+        private readonly IProductRoleService _productRoleService;
+        public ProductRoleController(IProductRoleService productRoleService)
         {
-            _roleService = roleService;
+            _productRoleService = productRoleService;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> create([FromBody] CreateRoleCommand model)
+        public async Task<IActionResult> create([FromBody] CreateProductRoleCommand model)
         {
             #region Parameters validation
 
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new CreateRoleCommand();
+                model = new CreateProductRoleCommand();
                 TryValidateModel(model);
             }
 
@@ -36,20 +37,20 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var result = await _roleService.CreateRole(model);
+            var result = await _productRoleService.CreateProductRole(model);
             return Ok(result);
         }
 
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteRole([FromBody] DeleteRoleCommand model)
+        public async Task<IActionResult> DeleteProductRole([FromBody] DeleteProductRoleCommand model)
         {
             #region Parameters validation
 
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new DeleteRoleCommand();
+                model = new DeleteProductRoleCommand();
                 TryValidateModel(model);
             }
 
@@ -61,23 +62,25 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var deleteResult = await _roleService.DeleteRole(model);
+            var deleteResult = await _productRoleService.DeleteProductRole(model);
             if (deleteResult)
             {
-                return BadRequest("Failed to delete Role");
+                return BadRequest("Failed to delete ProductRole");
             }
 
-            return Ok("Role deleted successfully");
+            return Ok("ProductRole deleted successfully");
         }
 
-        [HttpGet("Get")]
-        public async Task<IActionResult> GetRole([FromQuery] GetRoleCommand model)
+        [HttpPost("Listing")]
+        public async Task<IActionResult> GetProductRole([FromBody] ListingProductRoleCommand model)
         {
             #region Parameters validation
             // Parameter hasn't been initialized.
+
+  
             if (model == null)
             {
-                model = new GetRoleCommand();
+                model = new ListingProductRoleCommand();
                 TryValidateModel(model);
             }
 
@@ -86,28 +89,23 @@ namespace Training.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             #endregion
 
-            var getRole = await _roleService.GetRole(model);
-            if (getRole)
-            {
-                return Ok(getRole);
-            }
 
-            return BadRequest("No Role with that Id found!");
+            var result = await _productRoleService.ListingProductRole(model);
+            return Ok(result);
 
 
         }
 
         [HttpPatch("Update")]
-        public async Task<IActionResult> UpdateRole([FromBody] UpdateRoleCommand model)
+        public async Task<IActionResult> UpdateProductRole([FromBody] UpdateProductRoleCommand model)
         {
             #region Parameters validation
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new UpdateRoleCommand();
+                model = new UpdateProductRoleCommand();
                 TryValidateModel(model);
             }
 
@@ -119,7 +117,7 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var updated = await _roleService.UpdateRole(model);
+            var updated = await _productRoleService.UpdateProductRole(model);
 
             return Ok(updated);
 

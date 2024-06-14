@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Training.Domain.Helper.Constants;
 
 namespace Training.API.Controllers
 {
@@ -32,7 +33,7 @@ namespace Training.API.Controllers
             return userClaim?.Value;
         }
 
-         [ApiExplorerSettings(IgnoreApi = true)]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public string GetCurrentUserRole(IHttpContextAccessor _httpContext)
         {
             var identity = _httpContext.HttpContext.User.Identity as ClaimsIdentity;
@@ -43,6 +44,23 @@ namespace Training.API.Controllers
             string userRole = _httpContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type.Equals("Roles"))?.Value;
 
             return userRole;
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public bool RoleAuthenticate(IHttpContextAccessor _httpContext, string pass)
+        {
+            string role = GetCurrentUserRole(_httpContext);
+            string[] uRoles = role.Split(UserConstants.splitter);
+            string[] sPasses = pass.Split(UserConstants.splitter);
+
+            foreach (string uRole in uRoles)
+            {
+                if (sPasses.Contains(uRole))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

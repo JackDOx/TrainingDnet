@@ -5,11 +5,11 @@ using Training.Entity.EntityModel;
 
 namespace Training.Domain.Handler.Roles
 {
-    public class CreateAuthorHandler : AuthorBaseHandler, IRequestHandler<CreateBookCommand, bool>
+    public class CreateRoleHandler : RoleBaseHandler, IRequestHandler<CreateRoleCommand, bool>
     {
-        public CreateAuthorHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public CreateRoleHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public async Task<bool> Handle(CreateBookCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateRoleCommand request, CancellationToken cancellationToken)
         {
             var id = Guid.NewGuid();
             var role = new Role

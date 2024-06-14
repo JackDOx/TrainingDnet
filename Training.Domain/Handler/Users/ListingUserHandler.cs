@@ -8,18 +8,18 @@ using Training.Domain.ViewModel.Users;
 
 namespace Training.Domain.Handler.Users
 {
-    public class ListingUserHandler : UserBaseHandler, IRequestHandler<GetUserPaginationCommand, PaginationSet<BookViewModel>> 
+    public class ListingUserHandler : UserBaseHandler, IRequestHandler<GetUserPaginationCommand, PaginationSet<AccountViewModel>> 
     {
         public ListingUserHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
 
         }
 
-        public async Task<PaginationSet<BookViewModel>> Handle(GetUserPaginationCommand request, CancellationToken cancellationToken)
+        public async Task<PaginationSet<AccountViewModel>> Handle(GetUserPaginationCommand request, CancellationToken cancellationToken)
         {
             var roles = _unitOfWork.Role.GetQueryable();
             var query = _unitOfWork.User.GetQueryable()
-                .Select(x => new BookViewModel
+                .Select(x => new AccountViewModel
                 {
                     Id = x.Id,
                     UserId = x.UserId,

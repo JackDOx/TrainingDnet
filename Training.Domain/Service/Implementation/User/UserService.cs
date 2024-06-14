@@ -30,7 +30,7 @@ namespace Training.Domain.Service.Implementation.User
             return await _mediator.Send(request);
         }
 
-        public async Task<PaginationSet<BookViewModel>> Listing(GetUserPaginationCommand request)
+        public async Task<PaginationSet<AccountViewModel>> Listing(GetUserPaginationCommand request)
         {
             try
             {

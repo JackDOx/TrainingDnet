@@ -24,6 +24,14 @@ using Training.Domain.Service.Implementation.UserRole;
 using Training.Domain.Service.Interface.UserRole;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Training.Domain.Service.Implementation.Author;
+using Training.Domain.Service.Interface.Author;
+using Training.Domain.Service.Interface.Category;
+using Training.Domain.Service.Implementation.Category;
+using Training.Domain.Service.Interface.Book;
+using Training.Domain.Service.Implementation.Book;
+using Training.Domain.Service.Interface.ProductRole;
+using Training.Domain.Service.Implementation.ProductRole;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -162,9 +170,12 @@ void AddServices(WebApplicationBuilder build) {
 
     // Add Service
     build.Services.AddTransient<IUserService, UserService>();
-    build.Services.AddTransient<IAuthorService, BookService>();
+    build.Services.AddTransient<IRoleService, RoleService>();
     build.Services.AddTransient<IUserRoleService, UserRoleService>();
-
+    build.Services.AddTransient<IAuthorService, AuthorService>();
+    build.Services.AddTransient<ICategoryService, CategoryService>();
+    build.Services.AddTransient<IBookService, BookService>();
+    build.Services.AddTransient<IProductRoleService, ProductRoleService>();
 
     // Add MediatR
     build.Services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(CreateUserCommand).Assembly);

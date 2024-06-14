@@ -3,9 +3,9 @@ using Training.Data.Infrastructure.Interfaces;
 using Training.Domain.Command.UserRoles;
 using Training.Entity.EntityModel;
 
-namespace Training.Domain.Handler.Roles
+namespace Training.Domain.Handler.Users
 {
-    public class UpdateUserRoleHandler : AuthorBaseHandler, IRequestHandler<UpdateUserRoleCommand, bool>
+    public class UpdateUserRoleHandler : UserBaseHandler, IRequestHandler<UpdateUserRoleCommand, bool>
     {
         public UpdateUserRoleHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 

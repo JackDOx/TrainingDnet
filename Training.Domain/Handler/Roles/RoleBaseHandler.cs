@@ -2,10 +2,10 @@
 
 namespace Training.Domain.Handler.Roles;
 
-public abstract class AuthorBaseHandler : BaseHandler
+public abstract class RoleBaseHandler : BaseHandler
 {
     //private readonly string key = UserConstants.Key;
-    protected AuthorBaseHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
+    protected RoleBaseHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
     {
 
     }

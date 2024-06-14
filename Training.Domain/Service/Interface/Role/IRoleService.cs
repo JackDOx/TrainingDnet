@@ -2,12 +2,12 @@
 
 namespace Training.Domain.Service.Interface.Role
 {
-    public interface IAuthorService
+    public interface IRoleService
     {
-        Task<bool> CreateRole(CreateBookCommand request);
-        Task<bool> DeleteRole(DeleteAuthorCommand request);
-        Task<bool> GetRole(GetAuthorCommand request);
+        Task<bool> CreateRole(CreateRoleCommand request);
+        Task<bool> DeleteRole(DeleteRoleCommand request);
+        Task<bool> GetRole(GetRoleCommand request);
         //Task<bool> GetMany(DeleteUserCommand request);
-        Task<bool> UpdateRole(UpdateAuthorCommand request);
+        Task<bool> UpdateRole(UpdateRoleCommand request);
     }
 }

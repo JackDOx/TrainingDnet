@@ -4,7 +4,7 @@ using Training.Domain.ViewModel.Users;
 
 namespace Training.Domain.Command.Users
 {
-    public class GetUserPaginationCommand : IRequest<PaginationSet<BookViewModel>>
+    public class GetUserPaginationCommand : IRequest<PaginationSet<AccountViewModel>>
     {
         public List<SearchObjForCondition>? SearchString { get; set; }
         public List<SearchObjForCondition>? Filter { get; set; }

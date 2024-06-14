@@ -26,6 +26,8 @@ namespace Training.Domain.ViewModel.Books
         public int Remaining { get; set; }
         public string Status { get; set; }
 
+        public string RoleAccess { get; set; }
+
     }
 
     public class ProductRoleViewModel

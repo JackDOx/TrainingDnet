@@ -1,26 +1,27 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Training.Domain.Command.Roles;
-using Training.Domain.Command.UserRoles;
+using System.Net.Http;
+using Training.Domain.Command.Books;
 using Training.Domain.Helper.Constants;
-using Training.Domain.Service.Interface.UserRole;
+using Training.Domain.Service.Interface.Book;
+
 
 namespace Training.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserRoleController : BaseController
+    public class BookController : BaseController
     {
         private readonly IHttpContextAccessor _httpContext;
-        private readonly IUserRoleService _roleService;
-        public UserRoleController(IHttpContextAccessor httpContext, IUserRoleService roleService)
+        private readonly IBookService _bookService;
+        public BookController(IHttpContextAccessor httpContext ,IBookService bookService)
         {
             _httpContext = httpContext;
-            _roleService = roleService;
+            _bookService = bookService;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> create([FromBody] CreateUserRoleCommand model)
+        public async Task<IActionResult> create([FromBody] CreateBookCommand model)
         {
 
             #region roleAuthenticate
@@ -35,7 +36,7 @@ namespace Training.API.Controllers
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new CreateUserRoleCommand();
+                model = new CreateBookCommand();
                 TryValidateModel(model);
             }
 
@@ -47,13 +48,14 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var result = await _roleService.CreateUserRole(model);
+
+            var result = await _bookService.CreateBook(model);
             return Ok(result);
         }
 
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteUserRole([FromBody] DeleteUserRoleCommand model)
+        public async Task<IActionResult> DeleteBook([FromBody] DeleteBookCommand model)
         {
 
             #region roleAuthenticate
@@ -68,7 +70,7 @@ namespace Training.API.Controllers
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new DeleteUserRoleCommand();
+                model = new DeleteBookCommand();
                 TryValidateModel(model);
             }
 
@@ -80,31 +82,26 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var deleteResult = await _roleService.DeleteUserRole(model);
+
+            var deleteResult = await _bookService.DeleteBook(model);
             if (deleteResult)
             {
-                return BadRequest("Failed to delete Role");
+                return BadRequest("Failed to delete Book");
             }
 
-            return Ok("Role deleted successfully");
+            return Ok("Book deleted successfully");
         }
 
-        [HttpGet("Get")]
-        public async Task<IActionResult> GetUserRole([FromQuery] GetUserRoleCommand model)
+        [HttpPost("Listing")]
+        public async Task<IActionResult> GetBook([FromBody] ListingBookCommand model)
         {
-
-            #region roleAuthenticate
-            if (!RoleAuthenticate(_httpContext, UserConstants.bmRole))
-            {
-                return BadRequest(StatusCode(401, "Unauthorized!"));
-            };
-            #endregion
-
             #region Parameters validation
             // Parameter hasn't been initialized.
+
+  
             if (model == null)
             {
-                model = new GetUserRoleCommand();
+                model = new ListingBookCommand();
                 TryValidateModel(model);
             }
 
@@ -113,22 +110,19 @@ namespace Training.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             #endregion
 
-            var getRole = await _roleService.GetUserRole(model);
-            if (getRole)
-            {
-                return Ok(getRole);
-            }
+            model.userRole = GetCurrentUserRole(_httpContext);
 
-            return BadRequest("No Role with that Id found!");
+
+            var result = await _bookService.ListingBook(model);
+            return Ok(result);
 
 
         }
 
         [HttpPatch("Update")]
-        public async Task<IActionResult> UpdateUserRole([FromBody] UpdateUserRoleCommand model)
+        public async Task<IActionResult> UpdateBook([FromBody] UpdateBookCommand model)
         {
 
             #region roleAuthenticate
@@ -142,7 +136,7 @@ namespace Training.API.Controllers
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new UpdateUserRoleCommand();
+                model = new UpdateBookCommand();
                 TryValidateModel(model);
             }
 
@@ -154,7 +148,8 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var updated = await _roleService.UpdateUserRole(model);
+
+            var updated = await _bookService.UpdateBook(model);
 
             return Ok(updated);
 

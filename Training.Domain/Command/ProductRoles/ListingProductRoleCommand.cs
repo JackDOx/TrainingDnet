@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Training.Domain.ViewModel;
 using Training.Domain.ViewModel.Books;
+using Training.Domain.Command.Users;
 
 namespace Training.Domain.Command.ProductRoles
 {
@@ -14,10 +15,5 @@ namespace Training.Domain.Command.ProductRoles
         public int PageSize { get; set; }
     }
 
-    public class SearchObjForCondition
-    {
-        public string Field { get; set; }
-        public string Value { get; set; }
-    }
 }
 

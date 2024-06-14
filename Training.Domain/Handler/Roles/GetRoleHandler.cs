@@ -5,11 +5,11 @@ using Training.Entity.EntityModel;
 
 namespace Training.Domain.Handler.Roles
 {
-    public class GetAuthorHandler : AuthorBaseHandler, IRequestHandler<GetAuthorCommand, bool>
+    public class GetRoleHandler : RoleBaseHandler, IRequestHandler<GetRoleCommand, bool>
     {
-        public GetAuthorHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public GetRoleHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public async Task<bool> Handle(GetAuthorCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(GetRoleCommand request, CancellationToken cancellationToken)
         {
             var role = await _unitOfWork.Role.GetById(request.Id);
 

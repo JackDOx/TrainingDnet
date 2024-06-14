@@ -1,28 +1,27 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Training.Domain.Command.Roles;
-using Training.Domain.Command.UserRoles;
+using Training.Domain.Command.Categories;
 using Training.Domain.Helper.Constants;
-using Training.Domain.Service.Interface.UserRole;
+using Training.Domain.Service.Interface.Category;
+
 
 namespace Training.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserRoleController : BaseController
+    public class CategoryController : BaseController
     {
         private readonly IHttpContextAccessor _httpContext;
-        private readonly IUserRoleService _roleService;
-        public UserRoleController(IHttpContextAccessor httpContext, IUserRoleService roleService)
+        private readonly ICategoryService _categoryService;
+        public CategoryController(IHttpContextAccessor httpContext ,ICategoryService categoryService)
         {
             _httpContext = httpContext;
-            _roleService = roleService;
+            _categoryService = categoryService;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> create([FromBody] CreateUserRoleCommand model)
+        public async Task<IActionResult> create([FromBody] CreateCategoryCommand model)
         {
-
             #region roleAuthenticate
             if (!RoleAuthenticate(_httpContext, UserConstants.bmRole))
             {
@@ -35,7 +34,7 @@ namespace Training.API.Controllers
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new CreateUserRoleCommand();
+                model = new CreateCategoryCommand();
                 TryValidateModel(model);
             }
 
@@ -47,13 +46,13 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var result = await _roleService.CreateUserRole(model);
+            var result = await _categoryService.CreateCategory(model);
             return Ok(result);
         }
 
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteUserRole([FromBody] DeleteUserRoleCommand model)
+        public async Task<IActionResult> DeleteCategory([FromBody] DeleteCategoryCommand model)
         {
 
             #region roleAuthenticate
@@ -68,7 +67,7 @@ namespace Training.API.Controllers
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new DeleteUserRoleCommand();
+                model = new DeleteCategoryCommand();
                 TryValidateModel(model);
             }
 
@@ -80,31 +79,24 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var deleteResult = await _roleService.DeleteUserRole(model);
+            var deleteResult = await _categoryService.DeleteCategory(model);
             if (deleteResult)
             {
-                return BadRequest("Failed to delete Role");
+                return BadRequest("Failed to delete Category");
             }
 
-            return Ok("Role deleted successfully");
+            return Ok("Category deleted successfully");
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> GetUserRole([FromQuery] GetUserRoleCommand model)
+        public async Task<IActionResult> GetCategory([FromQuery] GetCategoryCommand model)
         {
-
-            #region roleAuthenticate
-            if (!RoleAuthenticate(_httpContext, UserConstants.bmRole))
-            {
-                return BadRequest(StatusCode(401, "Unauthorized!"));
-            };
-            #endregion
 
             #region Parameters validation
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new GetUserRoleCommand();
+                model = new GetCategoryCommand();
                 TryValidateModel(model);
             }
 
@@ -116,19 +108,19 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var getRole = await _roleService.GetUserRole(model);
-            if (getRole)
+            var getCategory = await _categoryService.GetCategory(model);
+            if (getCategory)
             {
-                return Ok(getRole);
+                return Ok(getCategory);
             }
 
-            return BadRequest("No Role with that Id found!");
+            return BadRequest("No Category with that Id found!");
 
 
         }
 
         [HttpPatch("Update")]
-        public async Task<IActionResult> UpdateUserRole([FromBody] UpdateUserRoleCommand model)
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryCommand model)
         {
 
             #region roleAuthenticate
@@ -142,7 +134,7 @@ namespace Training.API.Controllers
             // Parameter hasn't been initialized.
             if (model == null)
             {
-                model = new UpdateUserRoleCommand();
+                model = new UpdateCategoryCommand();
                 TryValidateModel(model);
             }
 
@@ -154,7 +146,7 @@ namespace Training.API.Controllers
 
             #endregion
 
-            var updated = await _roleService.UpdateUserRole(model);
+            var updated = await _categoryService.UpdateCategory(model);
 
             return Ok(updated);
 

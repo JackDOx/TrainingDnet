@@ -18,7 +18,7 @@ namespace Training.Domain.Handler.Users
         public async Task<TokenViewModel> Handle(LoginModelCommand request, CancellationToken cancellationToken)
         {
             var account = await _unitOfWork.User.GetQueryable(X => X.UserId == request.Username)
-                .Select(x => new BookViewModel
+                .Select(x => new AccountViewModel
                 {
                     Id = x.Id,
                     UserId = x.UserId,

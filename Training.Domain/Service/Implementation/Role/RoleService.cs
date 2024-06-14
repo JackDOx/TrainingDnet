@@ -4,33 +4,33 @@ using Training.Domain.Service.Interface.Role;
 
 namespace Training.Domain.Service.Implementation.Role
 {
-    public class BookService : IAuthorService
+    public class RoleService : IRoleService
     {
         private readonly IMediator _mediator;
-        public BookService(IMediator mediator)
+        public RoleService(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        public async Task<bool> CreateRole(CreateBookCommand request)
+        public async Task<bool> CreateRole(CreateRoleCommand request)
         {
             return await _mediator.Send(request);
 
         }
 
-        public async Task<bool> DeleteRole(DeleteAuthorCommand request)
+        public async Task<bool> DeleteRole(DeleteRoleCommand request)
         {
             return await _mediator.Send(request);
 
         }
 
-        public async Task<bool> UpdateRole(UpdateAuthorCommand request)
+        public async Task<bool> UpdateRole(UpdateRoleCommand request)
         {
             return await _mediator.Send(request);
 
         }
 
-        public async Task<bool> GetRole(GetAuthorCommand request)
+        public async Task<bool> GetRole(GetRoleCommand request)
         {
             return await _mediator.Send(request);
 

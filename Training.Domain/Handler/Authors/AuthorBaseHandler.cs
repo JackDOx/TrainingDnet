@@ -2,10 +2,10 @@
 
 namespace Training.Domain.Handler.Authors;
 
-public abstract class CategoryBaseHandler : BaseHandler
+public abstract class AuthorBaseHandler : BaseHandler
 {
     //private readonly string key = UserConstants.Key;
-    protected CategoryBaseHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
+    protected AuthorBaseHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
     {
 
     }

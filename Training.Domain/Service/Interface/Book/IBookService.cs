@@ -1,5 +1,4 @@
-﻿using Training.Domain.Command.Book;
-using Training.Domain.Command.Books;
+﻿using Training.Domain.Command.Books;
 using Training.Domain.ViewModel;
 using Training.Domain.ViewModel.Books;
 
