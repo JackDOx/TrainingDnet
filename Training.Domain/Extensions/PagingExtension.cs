@@ -27,7 +27,8 @@ namespace Training.Domain.Extensions
             {
                 source = source.OrderBy(sortExpression);
             }
-            var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            // var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            var items = await source.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
             var result = new PaginationSet<T>
             {

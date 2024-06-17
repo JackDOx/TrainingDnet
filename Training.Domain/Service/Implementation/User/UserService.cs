@@ -25,7 +25,7 @@ namespace Training.Domain.Service.Implementation.User
             return await _mediator.Send(request);
         }
 
-        public async Task<bool> GetUser(GetUserCommand request)
+        public async Task<AccountViewModel> GetUser(GetUserCommand request)
         {
             return await _mediator.Send(request);
         }

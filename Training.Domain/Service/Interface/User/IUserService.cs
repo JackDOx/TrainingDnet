@@ -8,7 +8,7 @@ namespace Training.Domain.Service.Interface.User
     {
         Task<bool> CreateAccount(CreateUserCommand request);
         Task<bool> DeleteUser(DeleteUserCommand request);
-        Task<bool> GetUser(GetUserCommand request);
+        Task<AccountViewModel> GetUser(GetUserCommand request);
         //Task<bool> GetMany(DeleteUserCommand request);
         Task<bool> UpdateUser(UpdateUserCommand request);
         Task<PaginationSet<AccountViewModel>> Listing(GetUserPaginationCommand request);

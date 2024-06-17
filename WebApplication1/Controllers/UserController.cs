@@ -172,7 +172,7 @@ namespace Training.API.Controllers
             #endregion
 
             var getUser = await _userService.GetUser(model);
-            if (getUser)
+            if (getUser != null)
             {
                 return Ok(getUser);
             }
